@@ -1,4 +1,4 @@
-MockDataBase
+MockDataBase [![Build status](https://ci.appveyor.com/api/projects/status/ejp2k0cn3oqd8t21?svg=true)](https://ci.appveyor.com/project/elizarovalex/mockdatabase)
 =======
 A simple framework for mocking a database in .Net
 
@@ -113,6 +113,13 @@ A simple framework for mocking a database in .Net
 			// Then
 			Assert.AreEqual(9, value);
 		}
+
+## Installation
+Package on [nuget](https://nuget.org) [MockDataBase](https://www.nuget.org/packages/MockDataBase/)
+
+To install MockDataBase, run the following command in the Package Manager Console
+
+`PM> Install-Package MockDataBase`
 
 ## License
 MockDataBase is licensed under [MIT License](http://en.wikipedia.org/wiki/MIT_License)
