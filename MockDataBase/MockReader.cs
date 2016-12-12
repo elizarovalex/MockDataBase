@@ -89,18 +89,14 @@ namespace MockDataBase
 					if (null != bValue)
 					{
 						var array = bValue.ToArray();
-						var res = Math.Min(array.Length - fieldOffset, length - bufferoffset);
-						Array.Copy(array, fieldOffset, buffer, bufferoffset, res);
-						return res;
+						return ArrayCopy(array, fieldOffset, buffer, bufferoffset, length);
 					}
 
 					var cValue = value as IEnumerable<char>;
 					if (null != cValue)
 					{
 						var array = cValue.Select(c => (byte)c).ToArray();
-						var res = Math.Min(array.Length - fieldOffset, length - bufferoffset);
-						Array.Copy(array, fieldOffset, buffer, bufferoffset, res);
-						return res;
+						return ArrayCopy(array, fieldOffset, buffer, bufferoffset, length);
 					}
 
 					throw new NotSupportedException();
@@ -119,18 +115,14 @@ namespace MockDataBase
 					if (null != cValue)
 					{
 						var array = cValue.ToArray();
-						var res = Math.Min(array.Length - fieldoffset, length - bufferoffset);
-						Array.Copy(array, fieldoffset, buffer, bufferoffset, res);
-						return res;
+						return ArrayCopy(array, fieldoffset, buffer, bufferoffset, length);
 					}
 
 					var bValue = value as IEnumerable<byte>;
 					if (null != bValue)
 					{
 						var array = bValue.Select(b => (char)b).ToArray();
-						var res = Math.Min(array.Length - fieldoffset, length - bufferoffset);
-						Array.Copy(array, fieldoffset, buffer, bufferoffset, res);
-						return res;
+						return ArrayCopy(array, fieldoffset, buffer, bufferoffset, length);
 					}
 
 					throw new NotSupportedException();
@@ -249,6 +241,13 @@ namespace MockDataBase
 				public int RecordsAffected
 				{
 					get { return _rowIndex + 1; }
+				}
+
+				private static long ArrayCopy(Array array, long fieldOffset, Array buffer, int bufferoffset, int length)
+				{
+					var res = Math.Min(array.Length - fieldOffset, length - bufferoffset);
+					Array.Copy(array, fieldOffset, buffer, bufferoffset, res);
+					return res;
 				}
 			}
 		}
